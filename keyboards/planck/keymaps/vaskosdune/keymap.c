@@ -67,14 +67,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Esc  | Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * | Esc  | LHEAD | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,           KC_W,           KC_E,    KC_R,    KC_T,    GKC_Y,   TD(TD_U_UE),    KC_I,    TD(TD_O_OE),    KC_P,     KC_BSPC,
     KC_LCTL, TD(TD_A_AE),    TD(TD_S_SS),    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,           KC_K,    KC_L,           GKC_SEMI, GKC_QUOT,
     KC_LSFT, GKC_Z,          KC_X,           KC_C,    KC_V,    KC_B,    KC_N,    KC_M,           KC_COMM, KC_DOT,         GKC_SLSH, KC_ENT,
-    KC_ESC,  KC_LCTL,        KC_LALT,        KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,          KC_LEFT, KC_DOWN,        KC_UP,    KC_RGHT
+    KC_ESC,  KC_LEAD,        KC_LALT,        KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,          KC_LEFT, KC_DOWN,        KC_UP,    KC_RGHT
 ),
 
 /* Colemak
@@ -217,23 +217,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case BACKLIT:
-      if (record->event.pressed) {
-        register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-        #ifdef KEYBOARD_planck_rev5
-          PORTE &= ~(1<<6);
-        #endif
-      } else {
-        unregister_code(KC_RSFT);
-        #ifdef KEYBOARD_planck_rev5
-          PORTE |= (1<<6);
-        #endif
-      }
-      return false;
-      break;
     case PLOVER:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
@@ -349,6 +332,18 @@ void matrix_scan_user(void) {
       muse_counter = (muse_counter + 1) % muse_tempo;
     }
   #endif
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    // switch to workspace 1 
+    SEQ_TWO_KEYS(KC_S, KC_1) {
+      register_code(KC_GUI);
+      register_code(KC_1);
+      unregister_code(KC_1);
+      unregister_code(KC_GUI);
+    }
+  }
 }
 
 bool music_mask_user(uint16_t keycode) {
