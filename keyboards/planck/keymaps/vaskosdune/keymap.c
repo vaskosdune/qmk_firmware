@@ -20,6 +20,8 @@
 
 extern keymap_config_t keymap_config;
 
+float zelda[][2] = SONG(ZELDA_PUZZLE);
+
 enum planck_layers {
   _QWERTY,
   _COLEMAK,
@@ -36,7 +38,8 @@ enum planck_keycodes {
   DVORAK,
   PLOVER,
   BACKLIT,
-  EXT_PLV
+  EXT_PLV,
+  ZELDA
 };
 
 enum {
@@ -44,11 +47,11 @@ enum {
   TD_A_AE = 1,
   TD_U_UE = 2,
   TD_S_SS = 3
-}
+};
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_ESC_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_O, GKC_OE),
-  [TD_A_AE] = ACTION_TAP_DANCE_DOUBLE(KC_A, GKC_OE),
+  [TD_O_OE]  = ACTION_TAP_DANCE_DOUBLE(KC_O, GKC_OE),
+  [TD_A_AE] = ACTION_TAP_DANCE_DOUBLE(KC_A, GKC_AE),
   [TD_U_UE] = ACTION_TAP_DANCE_DOUBLE(KC_U, GKC_UE ),
   [TD_S_SS] = ACTION_TAP_DANCE_DOUBLE(KC_S, GKC_SS )
 };
@@ -61,19 +64,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  | U/Ü  |   I  | O/Ö  |   P  | Bksp |
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Z  | U/Ü  |   I  | O/Ö  |   P  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Ctrl | A/Ä  | S/ß  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * | Shift|   Y  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Esc  | LHEAD | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,           KC_W,           KC_E,    KC_R,    KC_T,    GKC_Y,   TD(TD_U_UE),    KC_I,    TD(TD_O_OE),    KC_P,     KC_BSPC,
+    KC_TAB,  KC_Q,           KC_W,           KC_E,    KC_R,    KC_T,    GKC_Z,   TD(TD_U_UE),    KC_I,    TD(TD_O_OE),    KC_P,     KC_BSPC,
     KC_LCTL, TD(TD_A_AE),    TD(TD_S_SS),    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,           KC_K,    KC_L,           GKC_SEMI, GKC_QUOT,
-    KC_LSFT, GKC_Z,          KC_X,           KC_C,    KC_V,    KC_B,    KC_N,    KC_M,           KC_COMM, KC_DOT,         GKC_SLSH, KC_ENT,
+    KC_LSFT, GKC_Y,          KC_X,           KC_C,    KC_V,    KC_B,    KC_N,    KC_M,           KC_COMM, KC_DOT,         GKC_SLSH, KC_ENT,
     KC_ESC,  KC_LEAD,        KC_LALT,        KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,          KC_LEFT, KC_DOWN,        KC_UP,    KC_RGHT
 ),
 
@@ -126,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_planck_grid(
     GKC_TILD, GKC_EXKL, GKC_AT,  GKC_HASH, GKC_DLR,  GKC_PERC, GKC_CIRC, GKC_AMP,    GKC_ASTR,   GKC_LPARN, GKC_RPARN, KC_BSPC,
-    KC_DEL,   KC_F1,    KC_F2,   KC_F3,    KC_F4,    KC_F5,    KC_F6,    GKC_UCS,    GKC_PLUS,   GKC_LCUBR, GKC_RCUBR, GKC_PIPE,
+    KC_DEL,   KC_F1,    KC_F2,   KC_F3,    KC_F4,    KC_F5,    KC_F6,    GKC_USC,    GKC_PLUS,   GKC_LCUBR, GKC_RCUBR, GKC_PIPE,
     _______,  KC_F7,    KC_F8,   KC_F9,    KC_F10,   KC_F11,   KC_F12,   S(KC_NUHS), S(KC_NUBS), KC_HOME,   KC_END,    _______,
     _______,  _______,  _______, _______,  _______,  _______,  _______,  _______,    KC_MNXT,    KC_VOLD,   KC_VOLU,   KC_MPLY
 ),
@@ -139,14 +142,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
+ * |Zelda |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid(
     GKC_GRAVE,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,     KC_8,    KC_9,      KC_0,      KC_BSPC,
     KC_DEL,     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   GKC_MINS, GKC_EQ,  GKC_LSQBR, GKC_RSQBR, GKC_BSLS,
     _______,    KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS,  KC_NUBS, KC_PGUP, KC_PGDN, _______,
-    _______,    _______, _______, _______, _______, _______, _______, _______,  KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+    ZELDA,    _______, _______, _______, _______, _______, _______, _______,  KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 ),
 
 /* Plover layer (http://opensteno.org)
@@ -245,6 +248,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case ZELDA:
+      #ifdef AUDIO_ENABLE
+      PLAY_SONG(zelda);
+      #endif 
   }
   return true;
 }
@@ -317,6 +324,7 @@ void dip_update(uint8_t index, bool active) {
       }
    }
 }
+LEADER_EXTERNS();
 
 void matrix_scan_user(void) {
   #ifdef AUDIO_ENABLE
@@ -337,11 +345,11 @@ void matrix_scan_user(void) {
     leader_end();
 
     // switch to workspace 1 
-    SEQ_TWO_KEYS(KC_S, KC_1) {
-      register_code(KC_GUI);
+    SEQ_TWO_KEYS(KC_S, KC_Q) {
+      register_code(KC_LGUI);
       register_code(KC_1);
       unregister_code(KC_1);
-      unregister_code(KC_GUI);
+      unregister_code(KC_LGUI);
     }
   }
 }

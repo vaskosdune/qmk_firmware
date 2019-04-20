@@ -1,6 +1,7 @@
 #ifndef QUERTZ_KEYCODES_H
 #define QUERTZ_KEYCODES_H
 
+
 /*
 This file converts qmk keycodes to german software layout. 
 */
@@ -43,3 +44,5 @@ This file converts qmk keycodes to german software layout.
 #define GKC_UE KC_LBRACKET // ü
 #define GKC_SS KC_MINS // ß
 #define GKC_DEGRE LSFT(KC_GRAVE) // °
+
+#endif
