@@ -13,6 +13,7 @@ This file converts qmk keycodes to german software layout.
 #define GKC_CIRC KC_GRAVE // ^
 #define GKC_EXKL LSFT(KC_1) // !
 #define GKC_GT LSFT(KC_NONUS_BSLASH) // >
+#define GKC_LT RALT(KC_NONUS_BSLASH) // <
 #define GKC_EQ LSFT(KC_0) // =
 #define GKC_AMP LSFT(KC_6) // &
 #define GKC_BSLS RALT(KC_MINS) // \ backslash

@@ -20,7 +20,7 @@
 
 extern keymap_config_t keymap_config;
 
-float zelda[][2] = SONG(ZELDA_PUZZLE);
+
 
 enum planck_layers {
   _QWERTY,
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   {  |   }  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 | Home | End  |      |   ?  |      |
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   <  |   >  |      |   ?  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_planck_grid(
     GKC_TILD, GKC_EXKL, GKC_AT,  GKC_HASH, GKC_DLR,  GKC_PERC, GKC_CIRC, GKC_AMP,    GKC_ASTR,   GKC_LPARN, GKC_RPARN, KC_BSPC,
     KC_DEL,   KC_F1,    KC_F2,   KC_F3,    KC_F4,    KC_F5,    KC_F6,    GKC_USC,    GKC_PLUS,   GKC_LCUBR, GKC_RCUBR, GKC_PIPE,
-    _______,  KC_F7,    KC_F8,   KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_HOME,    KC_END,     _______,   GKC_QUES,  _______,
+    _______,  KC_F7,    KC_F8,   KC_F9,    KC_F10,   KC_F11,   KC_F12,   GKC_LT,    GKC_GT,     _______,   GKC_QUES,  _______,
     _______,  _______,  _______, _______,  _______,  _______,  _______,  _______,    KC_MNXT,    KC_VOLD,   KC_VOLU,   KC_MPLY
 ),
 
@@ -178,6 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef AUDIO_ENABLE
   float plover_song[][2]     = SONG(PLOVER_SOUND);
   float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
+  float zelda[][2] = SONG(ZELDA_PUZZLE);
 #endif
 
 uint32_t layer_state_set_user(uint32_t state) {
