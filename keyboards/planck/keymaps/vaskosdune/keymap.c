@@ -46,7 +46,7 @@ enum planck_keycodes {
 enum combo_events {
   S_SING,
   S_BSLS
-}
+};
 
 
 #define LOWER MO(_LOWER)

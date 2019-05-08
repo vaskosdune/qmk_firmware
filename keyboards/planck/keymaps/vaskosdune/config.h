@@ -38,7 +38,7 @@
 #define ENCODER_RESOLUTION 4
 
 // tab dance
-//#define TAPPING_TERM 200
+#define TAPPING_TERM 200
 
 // leader timout
 #define LEADER_TIMEOUT 300
