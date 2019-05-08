@@ -42,3 +42,5 @@
 
 // leader timout
 #define LEADER_TIMEOUT 300
+
+#define COMBO_COUNT 2

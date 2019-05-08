@@ -42,6 +42,13 @@ enum planck_keycodes {
   ZELDA
 };
 
+// mainly used shifted characters from us layout
+enum combo_events {
+  S_SING,
+  S_BSLS
+}
+
+
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
@@ -240,6 +247,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       #endif 
   }
   return true;
+}
+
+const uint16_t PROGMEM sing_combo[] = {KC_LSFT, GKC_QUOT, COMBO_END};
+const uint16_t PROGMEM bsls_combo[] = {KC_LSFT, GKC_SLSH, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [S_SING] = COMBO_ACTION(sing_combo),
+  [S_BSLS] = COMBO_ACTION(bsls_combo),
+};
+
+
+void process_combo_event(uint8_t combo_index, bool pressed) {
+  switch(combo_index) {
+  case S_SING:
+    if (pressed) {
+      register_code(KC_LSFT);
+      register_code(KC_BSLASH);
+      unregister_code(KC_BSLASH);
+      unregister_code(KC_LSFT);
+    }
+    break;
+
+  case S_BSLS:
+    if (pressed) {
+      register_code(KC_RALT);
+      register_code(KC_MINS);
+      unregister_code(KC_MINS);
+      unregister_code(KC_RALT);
+    }
+    break;
+  }
 }
 
 bool muse_mode = false;
