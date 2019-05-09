@@ -27,6 +27,7 @@ enum planck_layers {
   _COLEMAK,
   _DVORAK,
   _LOWER,
+  _NAV,
   _RAISE,
   _PLOVER,
   _ADJUST
@@ -51,6 +52,7 @@ enum combo_events {
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define NAVSPC LT(_NAV, KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -62,14 +64,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Y  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter/shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Esc  | LHEAD | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * | Esc  | LEAD | Alt  | GUI  |Lower |Nav   |Space |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,           KC_W,           KC_E,    KC_R,    KC_T,    GKC_Z,   KC_U,           KC_I,    KC_O,          KC_P,     KC_BSPC,
     KC_LCTL, KC_A,           KC_S,           KC_D,    KC_F,    KC_G,    KC_H,    KC_J,           KC_K,    KC_L,           GKC_SEMI, GKC_QUOT,
     KC_LSFT, GKC_Y,          KC_X,           KC_C,    KC_V,    KC_B,    KC_N,    KC_M,           KC_COMM, KC_DOT,         GKC_SLSH, RSFT_T(KC_ENT),
-    KC_ESC,  KC_LEAD,        KC_LALT,        KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,          KC_LEFT, KC_DOWN,        KC_UP,    KC_RGHT
+    KC_ESC,  KC_LEAD,        KC_LALT,        KC_LGUI, LOWER,   NAVSPC,  KC_SPC,  RAISE,          KC_LEFT, KC_DOWN,        KC_UP,    KC_RGHT
 ),
 
 /* Colemak
@@ -80,14 +82,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Enter/shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * | Brite| Ctrl | Alt  | GUI  |Lower |Nav   |Space |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_ENT) ,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   NAVSPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Dvorak
@@ -143,6 +145,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS,  KC_NUBS, KC_PGUP, KC_PGDN, _______,
     ZELDA,    _______, _______, _______, _______, _______, _______, _______,  KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 ),
+
+/* NAV (Navigation Layer)
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |      |      |      |      |      | Left | Down |  Up  |Right |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_NAV] = LAYOUT_planck_grid(
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
+),
+
 
 /* Plover layer (http://opensteno.org)
  * ,-----------------------------------------------------------------------------------.
