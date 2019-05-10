@@ -64,14 +64,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Y  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter/shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Esc  | LEAD | Alt  | GUI  |Lower |Nav   |Space |Raise | Left | Down |  Up  |Right |
+ * | Esc  | LEAD | Alt  | GUI  |Lower |Nav   |Space |Raise | Alt  | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,           KC_W,           KC_E,    KC_R,    KC_T,    GKC_Z,   KC_U,           KC_I,    KC_O,          KC_P,     KC_BSPC,
     KC_LCTL, KC_A,           KC_S,           KC_D,    KC_F,    KC_G,    KC_H,    KC_J,           KC_K,    KC_L,           GKC_SEMI, GKC_QUOT,
     KC_LSFT, GKC_Y,          KC_X,           KC_C,    KC_V,    KC_B,    KC_N,    KC_M,           KC_COMM, KC_DOT,         GKC_SLSH, RSFT_T(KC_ENT),
-    KC_ESC,  KC_LEAD,        KC_LALT,        KC_LGUI, LOWER,   NAVSPC,  KC_SPC,  RAISE,          KC_LEFT, KC_DOWN,        KC_UP,    KC_RGHT
+    KC_ESC,  KC_LEAD,        KC_LALT,        KC_LGUI, LOWER,   NAVSPC,  KC_SPC,  RAISE,          KC_LALT, KC_DOWN,        KC_UP,    KC_RGHT
 ),
 
 /* Colemak
@@ -369,7 +369,6 @@ void dip_update(uint8_t index, bool active) {
       }
    }
 }
-LEADER_EXTERNS();
 
 void matrix_scan_user(void) {
   #ifdef AUDIO_ENABLE
@@ -385,18 +384,6 @@ void matrix_scan_user(void) {
       muse_counter = (muse_counter + 1) % muse_tempo;
     }
   #endif
-  LEADER_DICTIONARY() {
-    leading = false;
-    leader_end();
-
-    // switch to workspace 1 
-    SEQ_TWO_KEYS(KC_S, KC_Q) {
-      register_code(KC_LGUI);
-      register_code(KC_1);
-      unregister_code(KC_1);
-      unregister_code(KC_LGUI);
-    }
-  }
 }
 
 bool music_mask_user(uint16_t keycode) {

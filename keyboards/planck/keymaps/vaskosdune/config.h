@@ -40,7 +40,5 @@
 // tab dance
 #define TAPPING_TERM 200
 
-// leader timout
-#define LEADER_TIMEOUT 300
 
 #define COMBO_COUNT 2
