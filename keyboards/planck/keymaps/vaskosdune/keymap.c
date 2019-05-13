@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |   ß  |   Ä  |   Ö  |   Ü  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  \   |
+ * | Del  |   Ä  |   ß  |   Ö  |   Ü  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  \   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT_planck_grid(
     GKC_GRAVE,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,     KC_8,    KC_9,      KC_0,      KC_BSPC,
-    KC_DEL,     GKC_SS,  GKC_AE,  GKC_OE,  GKC_UE,  KC_F5,   KC_F6,   GKC_MINS, GKC_EQ,  GKC_LSQBR, GKC_RSQBR, GKC_BSLS,
+    KC_DEL,     GKC_AE,  GKC_SS,  GKC_OE,  GKC_UE,  KC_F5,   KC_F6,   GKC_MINS, GKC_EQ,  GKC_LSQBR, GKC_RSQBR, GKC_BSLS,
     _______,    KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS,  KC_NUBS, KC_PGUP, KC_PGDN, _______,
     ZELDA,    _______, _______, _______, _______, _______, _______, _______,  KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 ),
