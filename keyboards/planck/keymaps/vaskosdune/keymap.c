@@ -28,6 +28,7 @@ enum planck_layers {
   _DVORAK,
   _LOWER,
   _NAV,
+  _WM,
   _RAISE,
   _PLOVER,
   _ADJUST
@@ -53,6 +54,7 @@ enum combo_events {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define NAVSPC LT(_NAV, KC_SPC)
+#define WM MO(_WM)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -64,14 +66,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Y  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter/shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Esc  |      | Alt  | GUI  |Lower |Nav   |Space |Raise | Alt  | Down |  Up  |Right |
+ * | Esc  |      | Alt  | GUI  |Lower |Nav   |Space |Raise | Alt  | Down |  Up  | WM   |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,           KC_W,           KC_E,    KC_R,    KC_T,    GKC_Z,   KC_U,           KC_I,    KC_O,          KC_P,     KC_BSPC,
     KC_LCTL, KC_A,           KC_S,           KC_D,    KC_F,    KC_G,    KC_H,    KC_J,           KC_K,    KC_L,           GKC_SEMI, GKC_QUOT,
     KC_LSFT, GKC_Y,          KC_X,           KC_C,    KC_V,    KC_B,    KC_N,    KC_M,           KC_COMM, KC_DOT,         GKC_SLSH, RSFT_T(KC_ENT),
-    KC_ESC,  _______,        KC_LALT,        KC_LGUI, LOWER,   NAVSPC,  KC_SPC,  RAISE,          KC_LALT, KC_DOWN,        KC_UP,    KC_RGHT
+    KC_ESC,  _______,        KC_LALT,        KC_LGUI, LOWER,   NAVSPC,  KC_SPC,  RAISE,          KC_LALT, KC_DOWN,        KC_UP,    WM
 ),
 
 /* Colemak
@@ -160,6 +162,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
     _______, KC_PGUP, KC_PGDN, KC_HOME, KC_END , KC_DEL , KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
+),
+
+/* WM ( Windowmanger Layer)
+ * ,-----------------------------------------------------------------------------------.
+ * |      | WS1  | WS2  | WS3  | WS4  | WS5  | WS6  | WS7  | WS8  | WS9  | WS10 |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      | MV1  | MV2  | MV3  | MV4  | MV5  | MV6  | MV7  | MV8  | MV9  | MV10 |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_WM] = LAYOUT_planck_grid(
+    _______, G(KC_1) , G(KC_2) , G(KC_3) , G(KC_4), G(KC_5), G(KC_6), G(KC_7), G(KC_8), G(KC_9), G(KC_0), _______,
+    _______, SGUI(KC_1), SGUI(KC_2), SGUI(KC_3), SGUI(KC_4) , SGUI(KC_5) , SGUI(KC_6), SGUI(KC_7), SGUI(KC_8), SGUI(KC_9), SGUI(KC_0), _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 ),
